@@ -1,42 +1,50 @@
 class DocumentParser:
-    def __init__(self):
-        pass
-
-    # take in a file and return list of lines
-    def parseFile(self, filePath: str) -> list[list[str]]:
-        words = []
-        with open(filePath, "r") as file:
-            for line in file:
-                line.rsplit(" ")
-
-                
-                        
-
-    # take a list of words a count sum of each
-    def wordCount(self, lineList: list[list[str]]):
-        raise NotImplementedError()
-    
-    def removePunctuations(self, word: str) -> str:
-        punctuations = [
-                        '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', 
-                        '_', '+', '-', '=', '`', '~', '{', '}', '[', ']', 
-                        '|', '\\', ';', ':', "'", '"', ',', '<', '.', '>', 
-                        '/', '?'
-                        ]
-
-        for char in word:
-            for punc in punctuations:
-                if char == punc:
-                    word.replace(char, "")
+    # Will take in filePath to readable file and parse all lines and return an unfiltered word list.
+    def parseFile(self, filePath: str) -> list[str]:
+        """A method that parses a document's lines and returns a list of lines."""
+        wordList = []
         
-        return word
-                    
+        with open(filePath, "r") as file:
+            lineList = [line for line in file]
 
+        for line in lineList:
+            wordList.extend(line.rsplit(" "))
             
+        return wordList
 
-def main() -> None:
-    parser = DocumentParser()
+    # Take a list of words and count the number of times the word was used
+    def wordCount(self, wordList: list[str]) -> list[list[str, int]]:
+        """
+        A method that counts how many times each word has occured and returns a list of lists of strs and ints.
+        [[word, count], [word, count]].
+        """
+        wordSet = set(wordList)
+        wordCount = []
 
-    print(parser.removePunctuations("mens."))
-if __name__ == "__main__":
-    main()
+        for word in wordSet:
+            count = 0
+
+            for werd in wordList:
+                if word == werd:
+                    count += 1
+            
+            if word != "":
+                wordCount.append([word, count])
+        
+        return wordCount
+
+    
+    def __removePunct(self, word: str) -> str:
+        """Private method to remove punctuations from a word, feel free to use it for a singular word."""
+        PUNCT_TO_REMOVE = "!@#$%^&*()_+=[]\{}|;':,./<>?\n\\"
+
+        chars, newWord = [char for char in word if char not in PUNCT_TO_REMOVE], ""
+
+        for char in chars:
+            newWord += char
+        
+        return newWord
+
+    def removePuncts(self, words: list[str]) -> list[str]:
+        """A method to remove punctuation from a list of words."""
+        return [self.__removePunct(word) for word in words]
