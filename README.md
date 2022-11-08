@@ -5,7 +5,6 @@ This is a simple word count class that will store lines from a document and remo
 `parser = DocumentParser()`<br />
 To get started, you do not need to initialize anything when creating an object from the class.
 
-
 ### Retrieving lines from a text document ###
 `parser.parseFile("textPath")`<br />
 The parseFile method requires a text file path and will grab all of the words in a plain text document. This method will return a list of uncleaned words.
@@ -20,7 +19,7 @@ The wordCount method requires a list of words to be passed in as an argument. On
 
 ### Count occurences of all words ###
 `allWordCount = parser.totalWordCount`<br />
-the totalWordCount method requires a list of words to be passed in as an argument. Once this requirement is satisfied, the method will return an integer that represents the total number of words used in the document.
+The totalWordCount method requires a list of words to be passed in as an argument. Once this requirement is satisfied, the method will return an integer that represents the total number of words used in the document.
 
 ### EXAMPLE ###
 The main.py file is an example of how the document parser can be used.
