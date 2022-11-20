@@ -13,6 +13,6 @@ def main() -> None:
     for word, count in words:
         print(f"{word:>14} : {count:3d}")
 
-
+# Ensures code only runs on main file.
 if __name__ == "__main__":
     main()
